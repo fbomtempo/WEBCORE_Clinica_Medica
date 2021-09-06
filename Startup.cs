@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WEBCORE_Clinica_Medica.Models;
 
 namespace WEBCORE_Clinica_Medica
 {
