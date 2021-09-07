@@ -10,8 +10,8 @@ using WEBCORE_Clinica_Medica.Models;
 namespace WEBCORE_Clinica_Medica.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210906183504_MigrationV1")]
-    partial class MigrationV1
+    [Migration("20210907183659_CriacaoInicial")]
+    partial class CriacaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,7 +68,7 @@ namespace WEBCORE_Clinica_Medica.Migrations
                         .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("nascimento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("nome")
                         .IsRequired()
@@ -103,6 +103,9 @@ namespace WEBCORE_Clinica_Medica.Migrations
                         .HasColumnType("nvarchar(14)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("cpf")
+                        .IsUnique();
 
                     b.ToTable("Paciente");
                 });

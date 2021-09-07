@@ -26,6 +26,8 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [Display(Name = "Sobrenome")]
         public string sobrenome { get; set; }
 
+        /*[DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]*/
         [Required(ErrorMessage = "Campo 'Nascimento' é obrigatório")]
         [Display(Name = "Nascimento")]
         public DateTime nascimento { get; set; }

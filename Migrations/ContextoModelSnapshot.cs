@@ -66,7 +66,7 @@ namespace WEBCORE_Clinica_Medica.Migrations
                         .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("nascimento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("nome")
                         .IsRequired()
@@ -101,6 +101,9 @@ namespace WEBCORE_Clinica_Medica.Migrations
                         .HasColumnType("nvarchar(14)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("cpf")
+                        .IsUnique();
 
                     b.ToTable("Paciente");
                 });
