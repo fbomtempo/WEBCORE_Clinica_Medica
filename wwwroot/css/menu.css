@@ -1,0 +1,11 @@
+.icon-link {
+    text-decoration: none;
+    color: #727272;
+}
+
+.icon-link:hover {
+    color: #727272;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: all 0.25s;
+}

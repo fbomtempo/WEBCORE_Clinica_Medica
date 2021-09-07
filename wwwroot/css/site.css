@@ -51,6 +51,19 @@ button.accept-policy {
   line-height: inherit;
 }
 
+.icon-link {
+    text-decoration: none;
+    color: #727272;
+}
+
+.icon-link:hover {
+    text-decoration: none;
+    color: #727272;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
