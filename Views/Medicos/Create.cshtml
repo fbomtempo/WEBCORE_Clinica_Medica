@@ -1,19 +1,18 @@
-﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Paciente
+﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Medico
 
 @{
-    ViewData["Title"] = "Editar Paciente";
+    ViewData["Title"] = "Inserir Médico";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Editar</h1>
+<h1>Inserir</h1>
 
-<h4>Paciente</h4>
+<h4>Médico</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
             <div class="form-group">
                 <label asp-for="nome" class="control-label"></label>
                 <input asp-for="nome" class="form-control" />
@@ -33,6 +32,16 @@
                 <label asp-for="sexo" class="control-label"></label>
                 <input asp-for="sexo" class="form-control" />
                 <span asp-validation-for="sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="crm" class="control-label"></label>
+                <input asp-for="crm" class="form-control" />
+                <span asp-validation-for="crm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="especialidade" class="control-label"></label>
+                <input asp-for="especialidade" class="form-control" />
+                <span asp-validation-for="especialidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="rg" class="control-label"></label>
@@ -95,7 +104,7 @@
                 <span asp-validation-for="complemento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Inserir" class="btn btn-primary" />
             </div>
         </form>
     </div>

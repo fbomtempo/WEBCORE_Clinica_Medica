@@ -8,9 +8,9 @@ using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Models.Mapeamento
 {
-    public class PacienteMap : IEntityTypeConfiguration<Paciente>
+    public class MedicoMap : IEntityTypeConfiguration<Medico>
     {
-        public void Configure(EntityTypeBuilder<Paciente> builder)
+        public void Configure(EntityTypeBuilder<Medico> builder)
         {
             builder.HasKey(p => p.id);
             builder.Property(p => p.id).ValueGeneratedOnAdd();
@@ -18,6 +18,8 @@ namespace WEBCORE_Clinica_Medica.Models.Mapeamento
             builder.Property(p => p.sobrenome).HasMaxLength(30).IsRequired();
             builder.Property(p => p.nascimento).HasColumnType("date").IsRequired();
             builder.Property(p => p.sexo).HasMaxLength(9).IsRequired();
+            builder.Property(p => p.crm).HasMaxLength(8).IsRequired();
+            builder.Property(p => p.especialidade).HasMaxLength(30).IsRequired();
             builder.Property(p => p.rg).HasMaxLength(12).IsRequired();
             builder.Property(p => p.cpf).HasMaxLength(14).IsRequired();
             builder.HasIndex(p => p.cpf).IsUnique();
@@ -32,7 +34,7 @@ namespace WEBCORE_Clinica_Medica.Models.Mapeamento
             builder.Property(p => p.bairro).HasMaxLength(30).IsRequired();
             builder.Property(p => p.complemento).HasMaxLength(70);
 
-            builder.ToTable("Paciente");
+            builder.ToTable("Medico");
         }
     }
 }

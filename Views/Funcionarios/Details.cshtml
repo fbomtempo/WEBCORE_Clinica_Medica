@@ -1,14 +1,14 @@
-﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Paciente
+﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Funcionario
 
 @{
-    ViewData["Title"] = "Visualizar Paciente";
+    ViewData["Title"] = "Visualizar Funcionário";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Visualizar</h1>
 
 <div>
-    <h4>Paciente</h4>
+    <h4>Funcionário</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -34,6 +34,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.sexo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cargo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cargo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.rg)

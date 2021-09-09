@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace WEBCORE_Clinica_Medica.Models.Dominio
 {
-    [Table("Paciente")]
-    public class Paciente
+    [Table("Funcionario")]
+    public class Funcionario
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name="ID")]
+        [Display(Name = "ID")]
         public int id { get; set; }
-        
+
         [StringLength(30, ErrorMessage = "Tamanho do campo 'Nome' excedeu o limite.")]
         [Required(ErrorMessage = "Campo 'Nome' é obrigatório.")]
         [Display(Name = "Nome")]
@@ -36,6 +36,11 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [Required(ErrorMessage = "Campo 'Sexo' é obrigatório")]
         [Display(Name = "Sexo")]
         public string sexo { get; set; }
+
+        [StringLength(30, ErrorMessage = "Tamanho do campo 'Cargo' excedeu o limite")]
+        [Required(ErrorMessage = "Campo 'Cargo' é obrigatório")]
+        [Display(Name = "Cargo")]
+        public string cargo { get; set; }
 
         [StringLength(12, ErrorMessage = "Tamanho do campo 'RG' excedeu o limite")]
         [Required(ErrorMessage = "Campo 'RG' é obrigatório")]

@@ -1,11 +1,11 @@
-﻿@model IEnumerable<WEBCORE_Clinica_Medica.Models.Dominio.Paciente>
+﻿@model IEnumerable<WEBCORE_Clinica_Medica.Models.Dominio.Funcionario>
 
 @{
-    ViewData["Title"] = "Pacientes";
+    ViewData["Title"] = "Funcionários";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Listar Pacientes</h1>
+<h1>Listar Funcionários</h1>
 
 <p>
     <a asp-action="Create">Inserir Novo</a>
@@ -14,19 +14,19 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.sobrenome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nascimento)
+                @Html.DisplayNameFor(model => model.cargo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.cpf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cidade)
             </th>
             <th></th>
         </tr>
@@ -35,19 +35,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.sobrenome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nascimento)
+                @Html.DisplayFor(modelItem => item.cargo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cidade)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |

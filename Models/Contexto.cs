@@ -13,10 +13,14 @@ namespace WEBCORE_Clinica_Medica.Models
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
         public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new PacienteMap());
+            builder.ApplyConfiguration(new MedicoMap());
+            builder.ApplyConfiguration(new FuncionarioMap());
         }
     }
 }
