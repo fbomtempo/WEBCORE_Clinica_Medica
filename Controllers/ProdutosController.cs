@@ -10,22 +10,22 @@ using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Controllers
 {
-    public class PacientesController : Controller
+    public class ProdutosController : Controller
     {
         private readonly Contexto _context;
 
-        public PacientesController(Contexto context)
+        public ProdutosController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Pacientes
+        // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pacientes.ToListAsync());
+            return View(await _context.Produtos.ToListAsync());
         }
 
-        // GET: Pacientes/Details/5
+        // GET: Produtos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Pacientes
+            var produto = await _context.Produtos
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (paciente == null)
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            return View(paciente);
+            return View(produto);
         }
 
-        // GET: Pacientes/Create
+        // GET: Produtos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Pacientes/Create
+        // POST: Produtos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nome,sobrenome,nascimento,sexo,rg,cpf,telres,telcel,email,cep,cidade,estado,endereco,numero,bairro,complemento")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("id,descricao,preco,estoque,total")] Produto produto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paciente);
+                _context.Add(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(paciente);
+            return View(produto);
         }
 
-        // GET: Pacientes/Edit/5
+        // GET: Produtos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Pacientes.FindAsync(id);
-            if (paciente == null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null)
             {
                 return NotFound();
             }
-            return View(paciente);
+            return View(produto);
         }
 
-        // POST: Pacientes/Edit/5
+        // POST: Produtos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,nome,sobrenome,nascimento,sexo,rg,cpf,telres,telcel,email,cep,cidade,estado,endereco,numero,bairro,complemento")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("id,descricao,preco,estoque,total")] Produto produto)
         {
-            if (id != paciente.id)
+            if (id != produto.id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace WEBCORE_Clinica_Medica.Controllers
             {
                 try
                 {
-                    _context.Update(paciente);
+                    _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PacienteExists(paciente.id))
+                    if (!ProdutoExists(produto.id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(paciente);
+            return View(produto);
         }
 
-        // GET: Pacientes/Delete/5
+        // GET: Produtos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,36 +124,30 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Pacientes
+            var produto = await _context.Produtos
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (paciente == null)
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            return View(paciente);
+            return View(produto);
         }
 
-        // POST: Pacientes/Delete/5
+        // POST: Produtos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _context.Pacientes.FindAsync(id);
-            _context.Pacientes.Remove(paciente);
+            var produto = await _context.Produtos.FindAsync(id);
+            _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PacienteExists(int id)
+        private bool ProdutoExists(int id)
         {
-            return _context.Pacientes.Any(e => e.id == id);
-        }
-
-        public ActionResult VerificarCPF(string cpf)
-        {
-            bool cpfExiste = _context.Pacientes.Where(p => p.cpf == cpf).Count() == 0;
-            return Json(cpfExiste);
+            return _context.Produtos.Any(e => e.id == id);
         }
     }
 }

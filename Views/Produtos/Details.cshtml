@@ -1,0 +1,43 @@
+﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Produto
+
+@{
+    ViewData["Title"] = "Visualizar Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Visualizar</h1>
+
+<div>
+    <h4>Produto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.preco)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.preco)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.estoque)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.estoque)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.total)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Editar</a> |
+    <a asp-action="Index">Voltar a Lista</a>
+</div>

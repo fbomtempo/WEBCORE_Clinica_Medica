@@ -94,6 +94,22 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     table.PrimaryKey("PK_Paciente", x => x.id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    descricao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    preco = table.Column<decimal>(type: "money", nullable: false),
+                    estoque = table.Column<int>(type: "int", nullable: false),
+                    total = table.Column<decimal>(type: "money", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.id);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionario_cpf",
                 table: "Funcionario",
@@ -123,6 +139,9 @@ namespace WEBCORE_Clinica_Medica.Migrations
 
             migrationBuilder.DropTable(
                 name: "Paciente");
+
+            migrationBuilder.DropTable(
+                name: "Produto");
         }
     }
 }

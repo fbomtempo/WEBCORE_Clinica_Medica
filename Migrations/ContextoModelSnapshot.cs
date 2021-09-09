@@ -300,6 +300,32 @@ namespace WEBCORE_Clinica_Medica.Migrations
 
                     b.ToTable("Paciente");
                 });
+
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Produto", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descricao")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("estoque")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("preco")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("total")
+                        .HasColumnType("money");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Produto");
+                });
 #pragma warning restore 612, 618
         }
     }

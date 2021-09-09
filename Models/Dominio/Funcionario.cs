@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -49,6 +50,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
 
         [StringLength(14, ErrorMessage = "Tamanho do campo 'CPF' excedeu o limite")]
         [Required(ErrorMessage = "Campo 'CPF' é obrigatório")]
+        [Remote("VerificarCPF", "Funcionarios", ErrorMessage = "CPF já cadastrado.")]
         [Display(Name = "CPF")]
         public string cpf { get; set; }
 

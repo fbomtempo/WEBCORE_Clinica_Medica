@@ -15,12 +15,16 @@ namespace WEBCORE_Clinica_Medica.Models
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new PacienteMap());
             builder.ApplyConfiguration(new MedicoMap());
             builder.ApplyConfiguration(new FuncionarioMap());
+            builder.ApplyConfiguration(new ProdutoMap());
         }
+
+        public DbSet<WEBCORE_Clinica_Medica.Models.Dominio.Produto> Produto { get; set; }
     }
 }

@@ -149,5 +149,11 @@ namespace WEBCORE_Clinica_Medica.Controllers
         {
             return _context.Medicos.Any(e => e.id == id);
         }
+
+        public ActionResult VerificarCPF(string cpf)
+        {
+            bool cpfExiste = _context.Medicos.Where(p => p.cpf == cpf).Count() == 0;
+            return Json(cpfExiste);
+        }
     }
 }
