@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WEBCORE_Clinica_Medica.Models.Dominio.Movimentacao>
+
+@{
+    ViewData["Title"] = "Movimentações";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listar Movimentações</h1>
+
+<p>
+    <a asp-action="Create">Inserir Nova</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.produto.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantidade)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.id">Visualizar</a>
+                <!--<a asp-action="Delete" asp-route-id="@item.id">Deletar</a>-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -110,6 +110,26 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     table.PrimaryKey("PK_Produto", x => x.id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Movimentacao",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idProduto = table.Column<int>(type: "int", nullable: false),
+                    tipo = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
+                    quantidade = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movimentacao", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Movimentacao_Produto_idProduto",
+                        column: x => x.idProduto,
+                        principalTable: "Produto",
+                        principalColumn: "id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionario_cpf",
                 table: "Funcionario",
@@ -121,6 +141,11 @@ namespace WEBCORE_Clinica_Medica.Migrations
                 table: "Medico",
                 column: "cpf",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Movimentacao_idProduto",
+                table: "Movimentacao",
+                column: "idProduto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Paciente_cpf",
@@ -136,6 +161,9 @@ namespace WEBCORE_Clinica_Medica.Migrations
 
             migrationBuilder.DropTable(
                 name: "Medico");
+
+            migrationBuilder.DropTable(
+                name: "Movimentacao");
 
             migrationBuilder.DropTable(
                 name: "Paciente");

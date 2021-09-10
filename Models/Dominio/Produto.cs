@@ -36,5 +36,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [Required]
         [Display(Name = "Total")]
         public double total { get; set; }
+
+        public ICollection<Movimentacao> movimentacoes { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace WEBCORE_Clinica_Medica.Models.Mapeamento
             builder.Property(p => p.preco).HasColumnType("money").IsRequired();
             builder.Property(p => p.estoque).HasColumnType("int").IsRequired();
             builder.Property(p => p.total).HasColumnType("money").IsRequired();
+            builder.HasMany(p => p.movimentacoes).WithOne(p => p.produto).HasForeignKey(p => p.idProduto).OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("Produto");
         }

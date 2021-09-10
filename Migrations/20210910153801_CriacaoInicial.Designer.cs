@@ -10,7 +10,7 @@ using WEBCORE_Clinica_Medica.Models;
 namespace WEBCORE_Clinica_Medica.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210909214940_CriacaoInicial")]
+    [Migration("20210910153801_CriacaoInicial")]
     partial class CriacaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -214,6 +214,31 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     b.ToTable("Medico");
                 });
 
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Movimentacao", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("idProduto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tipo")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("idProduto");
+
+                    b.ToTable("Movimentacao");
+                });
+
             modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Paciente", b =>
                 {
                     b.Property<int>("id")
@@ -327,6 +352,22 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Produto");
+                });
+
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Movimentacao", b =>
+                {
+                    b.HasOne("WEBCORE_Clinica_Medica.Models.Dominio.Produto", "produto")
+                        .WithMany("movimentacoes")
+                        .HasForeignKey("idProduto")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("produto");
+                });
+
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Produto", b =>
+                {
+                    b.Navigation("movimentacoes");
                 });
 #pragma warning restore 612, 618
         }
