@@ -37,13 +37,11 @@ namespace WEBCORE_Clinica_Medica
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Definindo a cultura padrão: pt-BR
-            var supportedCultures = new[] { new CultureInfo("pt-BR") };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
+            var cultureInfo = new CultureInfo("en-US");
+            cultureInfo.NumberFormat.NumberGroupSeparator = ".";
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             if (env.IsDevelopment())
             {

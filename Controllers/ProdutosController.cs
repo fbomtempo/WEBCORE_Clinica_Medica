@@ -58,6 +58,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
         {
             if (ModelState.IsValid)
             {
+                produto.total = produto.preco * produto.estoque;
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +98,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
             {
                 try
                 {
+                    produto.total = produto.preco * produto.estoque;
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
