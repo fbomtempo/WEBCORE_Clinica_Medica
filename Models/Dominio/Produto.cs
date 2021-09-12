@@ -22,7 +22,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [Display(Name = "Descrição")]
         public string descricao { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "R$ {0:F2}")]
         [Required(ErrorMessage = "Campo 'Preço' é obrigatório.")]
         [Display(Name = "Preço")]
         public double preco { get; set; }
@@ -32,7 +32,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [Display(Name = "Estoque")]
         public int estoque { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "R$ {0:F2}")]
         [Required]
         [Display(Name = "Total")]
         public double total { get; set; }

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace WEBCORE_Clinica_Medica.Models.Dominio
 {
+    public enum MovimentacaoTipo { Entrada, Saída }
+
     [Table("Movimentacao")]
     public class Movimentacao
     {
@@ -26,9 +28,8 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         public int idProduto { get; set; }
 
         [Display(Name = "Tipo")]
-        [StringLength(7, ErrorMessage = "Tamanho do campo 'Tipo' excedeu o limite.")]
         [Required(ErrorMessage = "Campo 'Tipo' é obrigatório.")]
-        public string tipo { get; set; }
+        public MovimentacaoTipo movTipo { get; set; }
 
         [Range(minimum: 1, maximum: 99999, ErrorMessage = "Tamanho do campo 'Quantidade' excedeu o limite.")]
         [Required(ErrorMessage = "Campo 'Quantidade' é obrigatório")]

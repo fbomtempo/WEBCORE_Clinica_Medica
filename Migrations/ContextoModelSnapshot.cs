@@ -222,13 +222,11 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     b.Property<int>("idProduto")
                         .HasColumnType("int");
 
-                    b.Property<int>("quantidade")
+                    b.Property<int>("movTipo")
                         .HasColumnType("int");
 
-                    b.Property<string>("tipo")
-                        .IsRequired()
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar(7)");
+                    b.Property<int>("quantidade")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 

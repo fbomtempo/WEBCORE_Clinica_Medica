@@ -48,6 +48,15 @@ namespace WEBCORE_Clinica_Medica.Controllers
         // GET: Movimentacoes/Create
         public IActionResult Create()
         {
+            var tMovimentacao = Enum.GetValues(typeof(MovimentacaoTipo))
+                                .Cast<MovimentacaoTipo>()
+                                .Select(p => new SelectListItem
+                                {
+                                    Value = p.ToString(),
+                                    Text = p.ToString()
+                                });
+
+            ViewBag.tMovimentacao = tMovimentacao;
             ViewData["idProduto"] = new SelectList(_context.Produtos, "id", "descricao");
             return View();
         }
@@ -57,19 +66,19 @@ namespace WEBCORE_Clinica_Medica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,idProduto,tipo,quantidade")] Movimentacao movimentacao)
+        public async Task<IActionResult> Create([Bind("id,idProduto,movTipo,quantidade")] Movimentacao movimentacao)
         {
             if (ModelState.IsValid)
             {
                 var produto = await _context.Produtos.FindAsync(movimentacao.idProduto);
-                if (movimentacao.tipo == "Entrada")
+                if (movimentacao.movTipo.Equals(MovimentacaoTipo.Entrada))
                 {
                     produto.estoque += movimentacao.quantidade;
                     produto.total = produto.preco * produto.estoque;
                     _context.Add(movimentacao);
                     _context.Produtos.Update(produto);
                 }
-                if (movimentacao.tipo == "Saída")
+                if (movimentacao.movTipo.Equals(MovimentacaoTipo.Saída))
                 {
                     produto.estoque -= movimentacao.quantidade;
                     if (produto.estoque > 0)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WEBCORE_Clinica_Medica.Migrations
 {
-    public partial class CriacaoInicial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,7 +117,7 @@ namespace WEBCORE_Clinica_Medica.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     idProduto = table.Column<int>(type: "int", nullable: false),
-                    tipo = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
+                    movTipo = table.Column<int>(type: "int", nullable: false),
                     quantidade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

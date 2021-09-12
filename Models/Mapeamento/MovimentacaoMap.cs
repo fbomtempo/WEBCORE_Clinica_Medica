@@ -15,7 +15,7 @@ namespace WEBCORE_Clinica_Medica.Models.Mapeamento
             builder.HasKey(p => p.id);
             builder.Property(p => p.id).ValueGeneratedOnAdd();
             builder.Property(p => p.idProduto).IsRequired();
-            builder.Property(p => p.tipo).HasMaxLength(7).IsRequired();
+            builder.Property(p => p.movTipo).IsRequired();
             builder.Property(p => p.quantidade).HasColumnType("int").IsRequired();
 
             builder.ToTable("Movimentacao");
