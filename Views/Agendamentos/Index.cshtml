@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WEBCORE_Clinica_Medica.Models.Dominio.Agendamento>
+
+@{
+    ViewData["Title"] = "Agendamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listar Agendamentos</h1>
+
+<p>
+    <a asp-action="Create">Inserir Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.paciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataRealizacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataAgendamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.agendamentoStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.paciente.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.medico.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataRealizacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAgendamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.agendamentoStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Visualizar</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

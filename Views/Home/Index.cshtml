@@ -4,7 +4,7 @@
 
 <div class="d-flex flex-column h-100">
     <h1 class="text-center pt-5 display-4">Bem-vindo(a) de volta!</h1>
-    <div class="container" style="padding-top: 9vh">
+    <div class="container" style="padding-top: 7.5vh">
         <div class="row">
             <div class="pb-5 col d-flex justify-content-center">
                 <a asp-area="" asp-controller="Pacientes" asp-action="Index" class="icon-link">
@@ -38,8 +38,18 @@
             </div>
         </div>
     </div>
-    <div class="container pb-5">
+    <div class="container">
         <div class="row">
+            <div class="pb-5 col d-flex justify-content-center">
+                <a asp-area="" asp-controller="Agendamentos" asp-action="Index" class="icon-link">
+                    <div class="card" style="width: 18rem;">
+                        <div class="text-center" style="font-size: 100px"><i class="fas fa-calendar-check"></i></div>
+                        <div class="card-body">
+                            <h5 class="text-center card-title h3">Agendamentos</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
             <div class="pb-5 col d-flex justify-content-center">
                 <a asp-area="" asp-controller="Produtos" asp-action="Index" class="icon-link">
                     <div class="card" style="width: 18rem;">
@@ -50,22 +60,12 @@
                     </div>
                 </a>
             </div>
-            <div class="pb-5 col d-flex justify-content-center">
+            <div class="pb-3 col d-flex justify-content-center">
                 <a asp-area="" asp-controller="Movimentacoes" asp-action="Index" class="icon-link">
                     <div class="card" style="width: 18rem;">
                         <div class="text-center" style="font-size: 100px"><i class="fas fa-exchange-alt"></i></i></div>
                         <div class="card-body">
                             <h5 class="text-center card-title h3">Movimentações</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="pb-5 col d-flex justify-content-center">
-                <a href="" class="icon-link">
-                    <div class="card" style="width: 18rem;">
-                        <div class="text-center" style="font-size: 100px"><i class="fas fa-exclamation-trianglee"></i></div>
-                        <div class="card-body">
-                            <h5 class="text-center card-title h3">W.I.P</h5>
                         </div>
                     </div>
                 </a>

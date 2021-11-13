@@ -33,6 +33,7 @@ namespace WEBCORE_Clinica_Medica.Models.Mapeamento
             builder.Property(p => p.numero).HasColumnType("int").IsRequired();
             builder.Property(p => p.bairro).HasMaxLength(30).IsRequired();
             builder.Property(p => p.complemento).HasMaxLength(70);
+            builder.HasMany(p => p.agendamentos).WithOne(p => p.medico).HasForeignKey(p => p.idMedico).OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("Medico");
         }

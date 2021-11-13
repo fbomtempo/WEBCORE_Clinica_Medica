@@ -17,6 +17,7 @@ namespace WEBCORE_Clinica_Medica.Models
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Movimentacao> Movimentacoes { get; set; }
+        public DbSet<Agendamento> Agendamentos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -25,8 +26,7 @@ namespace WEBCORE_Clinica_Medica.Models
             builder.ApplyConfiguration(new FuncionarioMap());
             builder.ApplyConfiguration(new ProdutoMap());
             builder.ApplyConfiguration(new MovimentacaoMap());
+            builder.ApplyConfiguration(new AgendamentoMap());
         }
-
-        public DbSet<WEBCORE_Clinica_Medica.Models.Dominio.Produto> Produto { get; set; }
     }
 }

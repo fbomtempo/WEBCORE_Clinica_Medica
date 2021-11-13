@@ -1,0 +1,52 @@
+﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Agendamento
+
+@{
+    ViewData["Title"] = "Deletar Agendamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Deletar</h1>
+
+<h3>Tem certeza que deseja deletar isso?</h3>
+<div>
+    <h4>Agendamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.paciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.paciente.nome)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.medico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.medico.nome)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dataRealizacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dataRealizacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dataAgendamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dataAgendamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.agendamentoStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.agendamentoStatus)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar a Lista</a>
+    </form>
+</div>

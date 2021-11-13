@@ -1,0 +1,55 @@
+﻿@model WEBCORE_Clinica_Medica.Models.Dominio.Agendamento
+
+@{
+    ViewData["Title"] = "Editar Agendamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar</h1>
+
+<h4>Agendamento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="idPaciente" class="control-label"></label>
+                <select asp-for="idPaciente" class="form-control" asp-items="ViewBag.idPaciente"></select>
+                <span asp-validation-for="idPaciente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idMedico" class="control-label"></label>
+                <select asp-for="idMedico" class="form-control" asp-items="ViewBag.idMedico"></select>
+                <span asp-validation-for="idMedico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataRealizacao" class="control-label"></label>
+                <input asp-for="dataRealizacao" class="form-control" />
+                <span asp-validation-for="dataRealizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataAgendamento" class="control-label"></label>
+                <input asp-for="dataAgendamento" class="form-control" />
+                <span asp-validation-for="dataAgendamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="agendamentoStatus" class="control-label"></label>
+                <select asp-for="agendamentoStatus" class="form-control" asp-items="ViewBag.tAgendamento"></select>
+                <span asp-validation-for="agendamentoStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar a Lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -97,5 +97,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         [StringLength(70, ErrorMessage = "Tamanho do campo 'Complemento' excedeu o limite.")]
         [Display(Name = "Complemento")]
         public string complemento { get; set; }
+
+        public ICollection<Agendamento> agendamentos { get; set; }
     }
 }
