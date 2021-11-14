@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WEBCORE_Clinica_Medica.Models.Dominio;
 using WEBCORE_Clinica_Medica.Models.Mapeamento;
+using WEBCORE_Clinica_Medica.Models.Consultas;
 
 namespace WEBCORE_Clinica_Medica.Models
 {
@@ -28,5 +29,7 @@ namespace WEBCORE_Clinica_Medica.Models
             builder.ApplyConfiguration(new MovimentacaoMap());
             builder.ApplyConfiguration(new AgendamentoMap());
         }
+
+        public DbSet<WEBCORE_Clinica_Medica.Models.Consultas.ConsultaAgendamento> ConsultaAgendamento { get; set; }
     }
 }

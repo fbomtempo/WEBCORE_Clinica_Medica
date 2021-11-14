@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WEBCORE_Clinica_Medica.Models.Consultas.ConsultaAgendamento>
+
+@{
+    ViewData["Title"] = "ListarPacienteAgendamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="pb-5">Relação Pacientes/Agendamentos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.paciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.especialidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataAtendimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.paciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.medico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.especialidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
