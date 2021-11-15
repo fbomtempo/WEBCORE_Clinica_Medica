@@ -33,7 +33,12 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Medicos" asp-action="Index">Médicos</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Funcionarios" asp-action="Index">Funcionários</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Agendamentos" asp-action="Index">Agendamentos</a></li>
+                                <li><a class="nav-link text-dark" href="#">Atendimentos W.I.P</a></li>
+                                <div class="dropdown-divider"></div>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Movimentacoes" asp-action="Index">Movimentações</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -44,12 +49,6 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Consulta" asp-action="ListarPacienteAgendamento">Pacientes/Agendamentos</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Consulta" asp-action="TotalMovimentacoes">Total de Movimentações</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Agendamentos" asp-action="Index">Agendamentos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Movimentacoes" asp-action="Index">Movimentações</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
