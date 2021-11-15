@@ -9,7 +9,7 @@ using WEBCORE_Clinica_Medica.Models.Consultas;
 
 namespace WEBCORE_Clinica_Medica.Models
 {
-    public class Contexto:DbContext
+    public class Contexto : DbContext
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
