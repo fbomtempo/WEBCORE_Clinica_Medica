@@ -31,5 +31,7 @@ namespace WEBCORE_Clinica_Medica.Models
         }
 
         public DbSet<WEBCORE_Clinica_Medica.Models.Consultas.ConsultaAgendamento> ConsultaAgendamento { get; set; }
+
+        public DbSet<WEBCORE_Clinica_Medica.Models.Consultas.TotalMovimentacoes> TotalMovimentacoes { get; set; }
     }
 }

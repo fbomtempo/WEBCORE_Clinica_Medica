@@ -38,5 +38,22 @@ namespace WEBCORE_Clinica_Medica.Controllers
                                           };
             return View(lista);
         }
+
+        [HttpGet("/Consulta/TotalMovimentacoes")]
+        public IActionResult TotalMovimentacoes()
+        {
+            IEnumerable<TotalMovimentacoes> lista = from movimentacao in contexto.Movimentacoes                                      
+                                                  .ToList()
+                                                  group movimentacao by new { movimentacao.movTipo }
+                                                  into grupo
+                                                  orderby grupo.Key.movTipo
+                                                  select new TotalMovimentacoes
+                                                  {
+                                                      tipoMovimentacao = Enum.GetName(typeof(MovimentacaoTipo), grupo.Key.movTipo),
+                                                      totalMovimentacoes = grupo.Count(),
+                                                      totalProdutos = grupo.Sum(p => p.quantidade)
+                                                  };
+            return View(lista);
+        }
     }
 }
