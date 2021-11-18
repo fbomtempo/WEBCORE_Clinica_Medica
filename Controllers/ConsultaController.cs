@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Controllers
 {
+    [Authorize]
     public class ConsultaController : Controller
     {
 

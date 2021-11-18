@@ -3,10 +3,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WEBCORE_Clinica_Medica.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MigrationV1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ConsultaAgendamento",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    paciente = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    nascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    medico = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    especialidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    dataAtendimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConsultaAgendamento", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Funcionario",
                 columns: table => new
@@ -111,6 +129,48 @@ namespace WEBCORE_Clinica_Medica.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TotalMovimentacoes",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tipoMovimentacao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    totalMovimentacoes = table.Column<int>(type: "int", nullable: false),
+                    totalProdutos = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TotalMovimentacoes", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Agendamento",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idPaciente = table.Column<int>(type: "int", nullable: false),
+                    idMedico = table.Column<int>(type: "int", nullable: false),
+                    dataRealizacao = table.Column<DateTime>(type: "date", nullable: false),
+                    dataAgendamento = table.Column<DateTime>(type: "date", nullable: false),
+                    agendamentoStatus = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Agendamento", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Agendamento_Medico_idMedico",
+                        column: x => x.idMedico,
+                        principalTable: "Medico",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_Agendamento_Paciente_idPaciente",
+                        column: x => x.idPaciente,
+                        principalTable: "Paciente",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Movimentacao",
                 columns: table => new
                 {
@@ -129,6 +189,16 @@ namespace WEBCORE_Clinica_Medica.Migrations
                         principalTable: "Produto",
                         principalColumn: "id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agendamento_idMedico",
+                table: "Agendamento",
+                column: "idMedico");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agendamento_idPaciente",
+                table: "Agendamento",
+                column: "idPaciente");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionario_cpf",
@@ -157,13 +227,22 @@ namespace WEBCORE_Clinica_Medica.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Agendamento");
+
+            migrationBuilder.DropTable(
+                name: "ConsultaAgendamento");
+
+            migrationBuilder.DropTable(
                 name: "Funcionario");
 
             migrationBuilder.DropTable(
-                name: "Medico");
+                name: "Movimentacao");
 
             migrationBuilder.DropTable(
-                name: "Movimentacao");
+                name: "TotalMovimentacoes");
+
+            migrationBuilder.DropTable(
+                name: "Medico");
 
             migrationBuilder.DropTable(
                 name: "Paciente");

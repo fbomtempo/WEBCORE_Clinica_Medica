@@ -16,8 +16,59 @@ namespace WEBCORE_Clinica_Medica.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Consultas.ConsultaAgendamento", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("dataAtendimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("especialidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("medico")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("nascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("paciente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ConsultaAgendamento");
+                });
+
+            modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Consultas.TotalMovimentacoes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("tipoMovimentacao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("totalMovimentacoes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("totalProdutos")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TotalMovimentacoes");
+                });
 
             modelBuilder.Entity("WEBCORE_Clinica_Medica.Models.Dominio.Agendamento", b =>
                 {
