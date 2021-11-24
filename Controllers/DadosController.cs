@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,7 +43,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 paciente.sexo = (i % 2 == 0) ? "Masculino" : "Feminino";
                 paciente.rg = randNum.Next(1, 99).ToString().PadLeft(2, '0') + "." + randNum.Next(100, 999).ToString() + "." + randNum.Next(100, 999).ToString() + "-" + randNum.Next(1, 9).ToString();
                 paciente.cpf = randNum.Next(1, 999).ToString().PadLeft(3, '0') + "." + randNum.Next(100, 999).ToString() + "." + randNum.Next(100, 999).ToString() + "-" + randNum.Next(2, 99).ToString().PadLeft(2, '0');
-                paciente.telres = "(18) " + randNum.Next(1, 9999).ToString().PadLeft(4, '0') + "-" +  randNum.Next(1, 9999).ToString().PadLeft(4, '0');
+                paciente.telres = "(18) " + randNum.Next(1, 9999).ToString().PadLeft(4, '0') + "-" + randNum.Next(1, 9999).ToString().PadLeft(4, '0');
                 paciente.telcel = "(18) " + randNum.Next(1, 99999).ToString().PadLeft(5, '0') + "-" + randNum.Next(1, 9999).ToString().PadLeft(4, '0');
                 paciente.email = paciente.nome.ToLower() + "@" + dominios[randNum.Next() % 6].ToLower() + ".com.br";
                 paciente.cep = "19000-000";
@@ -145,13 +146,15 @@ namespace WEBCORE_Clinica_Medica.Controllers
         {
             Random randNum = new Random();
 
-            for (int i = 0; i < 20; i++)
+            string[] produtos = { "Produto 1", "Produto 2", "Produto 3", "Produto 4", "Produto 5", "Produto 6", "Produto 7", "Produto 8", "Produto 9", "Produto 10" };
+
+            for (int i = 0; i < 10; i++)
             {
                 Produto produto = new Produto();
 
-                produto.descricao = "Produto " + (i + 1).ToString();
-                produto.preco = randNum.NextDouble() * 10;
-                produto.estoque = randNum.Next() % 50;
+                produto.descricao = produtos[i];
+                produto.preco = randNum.NextDouble() * 100;
+                produto.estoque = randNum.Next() % 15;
                 produto.total = produto.preco * produto.estoque;
 
                 contexto.Produtos.Add(produto);
@@ -159,7 +162,32 @@ namespace WEBCORE_Clinica_Medica.Controllers
 
             contexto.SaveChanges();
 
-            return View(contexto.Produtos.OrderBy(o => o.descricao).ToList());
+            return View(contexto.Produtos.OrderBy(o => o.id).ToList());
+        }
+
+        public IActionResult LimparTabelas()
+        {
+            contexto.Movimentacoes.RemoveRange(contexto.Movimentacoes);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Movimentacao', RESEED, 0)");
+
+            contexto.Agendamentos.RemoveRange(contexto.Agendamentos);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Agendamento', RESEED, 0)");
+
+            contexto.Produtos.RemoveRange(contexto.Produtos);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Produto', RESEED, 0)");
+
+            contexto.Pacientes.RemoveRange(contexto.Pacientes);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Paciente', RESEED, 0)");
+
+            contexto.Medicos.RemoveRange(contexto.Medicos);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Medico', RESEED, 0)");
+
+            contexto.Funcionarios.RemoveRange(contexto.Funcionarios);
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Funcionario', RESEED, 0)");
+
+            contexto.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
