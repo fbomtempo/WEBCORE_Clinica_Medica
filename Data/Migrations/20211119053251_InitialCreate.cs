@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WEBCORE_Clinica_Medica.Migrations
+namespace WEBCORE_Clinica_Medica.Data.Migrations
 {
-    public partial class MigrationV1 : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

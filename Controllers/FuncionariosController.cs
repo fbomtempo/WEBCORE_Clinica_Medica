@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WEBCORE_Clinica_Medica.Models;
+using WEBCORE_Clinica_Medica.Data;
 using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Controllers
@@ -22,8 +22,19 @@ namespace WEBCORE_Clinica_Medica.Controllers
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomeSobrenome)
         {
+            if (!String.IsNullOrEmpty(nomeSobrenome))
+            {
+                ViewData["FilterByName"] = nomeSobrenome;
+
+                var funcionarios = from funcionario in _context.Funcionarios
+                                select funcionario;
+
+                funcionarios = funcionarios.Where(f => f.nome.Contains(nomeSobrenome) || f.sobrenome.Contains(nomeSobrenome));
+
+                return View(await funcionarios.AsNoTracking().ToListAsync());
+            }
             return View(await _context.Funcionarios.ToListAsync());
         }
 

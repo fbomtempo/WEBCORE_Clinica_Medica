@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Globalization;
 using WEBCORE_Clinica_Medica.Data;
-using WEBCORE_Clinica_Medica.Models;
 
 namespace WEBCORE_Clinica_Medica
 {

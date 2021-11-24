@@ -5,11 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/search-box.css" />
+</head>
+
 <h1>Listar Pacientes</h1>
 
-<p>
+<p class="pb-3">
     <a asp-action="Create">Inserir Novo</a>
 </p>
+<form asp-action="Index" method="get" class="pb-3">
+    <input type="text" placeholder="Digite o nome ou sobrenome do paciente" name="NomeSobrenome" value="@ViewData["FilterByName"]" class="input-pesquisa" />
+    <input type="submit" value="Pesquisar" class="botao-pesquisa btn-primary ml-1" />
+    <a asp-action="Index"> | Limpar</a>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -32,29 +41,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sobrenome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cidade)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Visualizar</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cidade)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Visualizar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WEBCORE_Clinica_Medica.Models;
+using WEBCORE_Clinica_Medica.Data;
 using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Controllers
@@ -22,8 +22,30 @@ namespace WEBCORE_Clinica_Medica.Controllers
         }
 
         // GET: Agendamentos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nome)
         {
+            if (!String.IsNullOrEmpty(nome))
+            {
+                ViewData["FilterByName"] = nome;
+
+                var agendamentos = from agendamento in _context.Agendamentos                                                                         
+                                   join medico in _context.Medicos on agendamento.idMedico equals medico.id
+                                   join paciente in _context.Pacientes on agendamento.idPaciente equals paciente.id
+                                   select new Agendamento
+                                   {
+                                       id = agendamento.id,
+                                       paciente = agendamento.paciente,
+                                       medico = agendamento.medico,
+                                       dataRealizacao = agendamento.dataRealizacao,
+                                       dataAgendamento = agendamento.dataAgendamento,
+                                       agendamentoStatus = agendamento.agendamentoStatus
+                                   };
+
+                //IQueryable<Agendamento> agendamentos = _context.Agendamentos.Include(a => a.medico).Include(a => a.paciente);
+                agendamentos = agendamentos.Where(a => a.paciente.nome.Contains(nome));
+
+                return View(await agendamentos.AsNoTracking().ToListAsync());
+            }
             var contexto = _context.Agendamentos.Include(a => a.medico).Include(a => a.paciente);
             return View(await contexto.ToListAsync());
         }

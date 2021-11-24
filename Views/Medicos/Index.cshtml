@@ -5,11 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/search-box.css" />
+</head>
+
 <h1>Listar Médicos</h1>
 
-<p>
+<p class="pb-3">
     <a asp-action="Create">Inserir Novo</a>
 </p>
+<form asp-action="Index" method="get" class="pb-3">
+    <input type="text" placeholder="Digite o nome ou sobrenome do médico" name="NomeSobrenome" value="@ViewData["FilterByName"]" class="input-pesquisa" />
+    <input type="submit" value="Pesquisar" class="botao-pesquisa btn-primary ml-1" />
+    <a asp-action="Index"> | Limpar</a>
+</form>
 <table class="table">
     <thead>
         <tr>

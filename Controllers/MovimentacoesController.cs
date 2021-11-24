@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WEBCORE_Clinica_Medica.Models;
+using WEBCORE_Clinica_Medica.Data;
 using WEBCORE_Clinica_Medica.Models.Dominio;
 
 namespace WEBCORE_Clinica_Medica.Controllers
@@ -22,8 +22,27 @@ namespace WEBCORE_Clinica_Medica.Controllers
         }
 
         // GET: Movimentacoes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string produto)
         {
+            if (!String.IsNullOrEmpty(produto))
+            {
+                ViewData["FilterByProduct"] = produto;
+
+                var movimentacoes = from movimentacao in _context.Movimentacoes
+                                   join prod in _context.Produtos on movimentacao.idProduto equals prod.id
+                                   select new Movimentacao
+                                   {
+                                       id = movimentacao.id,
+                                       produto = movimentacao.produto,
+                                       movTipo = movimentacao.movTipo,
+                                       quantidade = movimentacao.quantidade
+                                   };
+
+                //IQueryable<Movimentacao> movimentacoes = _context.Movimentacoes.Include(p => p.produto);
+                movimentacoes = movimentacoes.Where(m => m.produto.descricao.Contains(produto));
+
+                return View(await movimentacoes.AsNoTracking().ToListAsync());
+            }
             var contexto = _context.Movimentacoes.Include(m => m.produto);
             return View(await contexto.ToListAsync());
         }

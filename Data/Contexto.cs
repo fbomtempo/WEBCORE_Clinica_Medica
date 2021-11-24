@@ -7,7 +7,7 @@ using WEBCORE_Clinica_Medica.Models.Dominio;
 using WEBCORE_Clinica_Medica.Models.Mapeamento;
 using WEBCORE_Clinica_Medica.Models.Consultas;
 
-namespace WEBCORE_Clinica_Medica.Models
+namespace WEBCORE_Clinica_Medica.Data
 {
     public class Contexto : DbContext
     {
@@ -31,7 +31,6 @@ namespace WEBCORE_Clinica_Medica.Models
         }
 
         public DbSet<WEBCORE_Clinica_Medica.Models.Consultas.ConsultaAgendamento> ConsultaAgendamento { get; set; }
-
         public DbSet<WEBCORE_Clinica_Medica.Models.Consultas.TotalMovimentacoes> TotalMovimentacoes { get; set; }
     }
 }
