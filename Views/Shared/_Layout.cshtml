@@ -35,7 +35,7 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Funcionarios" asp-action="Index">Funcionários</a></li>
                                 <div class="dropdown-divider"></div>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Agendamentos" asp-action="Index">Agendamentos</a></li>
-                                <li><a class="nav-link text-dark" href="#">Atendimentos W.I.P</a></li>
+                                <!-- <li><a class="nav-link text-dark" href="#">Atendimentos</a></li> -->
                                 <div class="dropdown-divider"></div>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Movimentacoes" asp-action="Index">Movimentações</a></li>
@@ -48,6 +48,17 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Consulta" asp-action="ListarPacienteAgendamento">Pacientes/Agendamentos</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Consulta" asp-action="TotalMovimentacoes">Total de Movimentações</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gerar Dados
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="nav-link text-primary" asp-area="" asp-controller="Dados" asp-action="GerarPacientes">Gerar Pacientes</a></li>
+                                <li><a class="nav-link text-primary" asp-area="" asp-controller="Dados" asp-action="GerarMedicos">Gerar Médicos</a></li>
+                                <li><a class="nav-link text-primary" asp-area="" asp-controller="Dados" asp-action="GerarFuncionarios">Gerar Funcionários</a></li>
+                                <li><a class="nav-link text-primary" asp-area="" asp-controller="Dados" asp-action="GerarProdutos">Gerar Produtos</a></li>
                             </ul>
                         </li>
                     </ul>
