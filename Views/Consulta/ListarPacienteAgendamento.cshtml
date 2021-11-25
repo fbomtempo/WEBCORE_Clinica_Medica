@@ -7,7 +7,7 @@
 
 <h1>Relação Pacientes/Agendamentos</h1>
 
-<p>
+<p class="pb-3">
     &nbsp;
 </p>
 <table class="table">
@@ -26,7 +26,13 @@
                 @Html.DisplayNameFor(model => model.especialidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.dataAtendimento)
+                @Html.DisplayNameFor(model => model.crm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataRealizacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataAgendamento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.status)
@@ -50,7 +56,13 @@
                 @Html.DisplayFor(modelItem => item.especialidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.dataAtendimento)
+                @Html.DisplayFor(modelItem => item.crm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataRealizacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAgendamento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.status)

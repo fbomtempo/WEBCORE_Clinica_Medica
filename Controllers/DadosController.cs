@@ -68,7 +68,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
             string[] nomesMasculinos = { "Matheus", "Lucas", "Benjamin", "Nicolas", "Guilherme", "Rafael", "Joaquim", "Samuel", "Henrique", "Gustavo" };
             string[] nomesFemininos = { "Lorena", "Lívia", "Giovanna", "Maria Eduarda", "Beatriz", "Maria Clara", "Cecília", "Lara", "Isadora", "Mariana" };
             string[] sobrenomes = { "Costa", "Ribeiro", "Martins", "Carvalho", "Almeida", "Lopes", "Soares", "Fernandes", "Vieira", "Barbosa" };
-            string[] especialidades = { "Cargiologista", "Ortopedista", "Desmatologista", "Oftalmologista", "Neurologista" };
+            string[] especialidades = { "Cardiologista", "Ortopedista", "Desmatologista", "Oftalmologista", "Neurologista" };
             string[] municipios = { "Assis", "Cândido Mota", "Tarumã", "Presidente Prudente", "Palmital", "Pedrinhas Paulista", "Maracaí", "Cruzália" };
             string[] dominios = { "outlook", "hotmail", "gmail", "uol", "globo", "yahoo" };
 
@@ -153,7 +153,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 Produto produto = new Produto();
 
                 produto.descricao = produtos[i];
-                produto.preco = randNum.NextDouble() * 100;
+                produto.preco = Math.Round(randNum.NextDouble() * 100, 2);
                 produto.estoque = randNum.Next() % 15;
                 produto.total = produto.preco * produto.estoque;
 
@@ -163,6 +163,36 @@ namespace WEBCORE_Clinica_Medica.Controllers
             contexto.SaveChanges();
 
             return View(contexto.Produtos.OrderBy(o => o.id).ToList());
+        }
+
+        public IActionResult GerarAgendamentos()
+        {
+            Random randNum = new Random();
+
+            IEnumerable<Paciente> listaPacientes = from paciente in contexto.Pacientes                                                  
+                                                   select paciente;
+
+            IEnumerable<Medico> listaMedicos = from medico in contexto.Medicos
+                                               select medico;
+
+            for (int i = 0; i < 7; i++)
+            {
+                Agendamento agendamento = new Agendamento();
+
+                agendamento.paciente = listaPacientes.ElementAt(i);
+                agendamento.idPaciente = agendamento.paciente.id;
+                agendamento.medico = listaMedicos.ElementAt(i);
+                agendamento.idMedico = agendamento.medico.id;
+                agendamento.dataRealizacao = DateTime.Now;
+                agendamento.dataAgendamento = DateTime.Now.AddDays(7); //DateTime.Parse(DateTime.UtcNow.AddDays(7).ToString(), cultura);
+                agendamento.agendamentoStatus = 0;
+
+                contexto.Agendamentos.Add(agendamento);
+            }
+
+            contexto.SaveChanges();
+
+            return View(contexto.Agendamentos.OrderBy(o => o.id).ToList());
         }
 
         public IActionResult LimparTabelas()

@@ -102,7 +102,7 @@ namespace WEBCORE_Clinica_Medica.Controllers
                 if (movimentacao.movTipo.Equals(MovimentacaoTipo.Saída))
                 {
                     produto.estoque -= movimentacao.quantidade;
-                    if (produto.estoque > 0)
+                    if (produto.estoque >= 0)
                     {
                         produto.total = produto.preco * produto.estoque;
                         _context.Add(movimentacao);

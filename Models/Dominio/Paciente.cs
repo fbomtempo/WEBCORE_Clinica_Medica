@@ -99,5 +99,13 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
         public string complemento { get; set; }
 
         public ICollection<Agendamento> agendamentos { get; set; }
+
+        public string nomeCompleto
+        {
+            get
+            {
+                return string.Format("{0} {1}", nome, sobrenome);
+            }
+        }
     }
 }

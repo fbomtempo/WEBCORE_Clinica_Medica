@@ -7,12 +7,15 @@
 
 <h1>Total de Movimentacões</h1>
 
-<p>
+<p class="pb-3">
     &nbsp;
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.descProduto)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.tipoMovimentacao)
             </th>
@@ -28,6 +31,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descProduto)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.tipoMovimentacao)
             </td>

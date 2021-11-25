@@ -23,9 +23,16 @@ namespace WEBCORE_Clinica_Medica.Models.Consultas
         [Display(Name = "Especialidade")]
         public string especialidade { get; set; }
 
+        [Display(Name = "CRM")]
+        public string crm { get; set; }
+
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = "Data de Atendimento")]
-        public DateTime dataAtendimento { get; set; }
+        [Display(Name = "Data Realização")]
+        public DateTime dataRealizacao { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "Data Agendada")]
+        public DateTime dataAgendamento { get; set; }
 
         [Display(Name = "Situação")]
         public string status { get; set; }

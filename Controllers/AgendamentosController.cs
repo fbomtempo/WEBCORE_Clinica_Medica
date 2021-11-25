@@ -82,8 +82,8 @@ namespace WEBCORE_Clinica_Medica.Controllers
                                });
 
             ViewBag.tAgendamento = tAgendamento;
-            ViewData["idMedico"] = new SelectList(_context.Medicos, "id", "nome");
-            ViewData["idPaciente"] = new SelectList(_context.Pacientes, "id", "nome");
+            ViewData["idMedico"] = new SelectList(_context.Medicos, "id", "nomeCompleto");
+            ViewData["idPaciente"] = new SelectList(_context.Pacientes, "id", "nomeCompleto");
             return View();
         }
 
