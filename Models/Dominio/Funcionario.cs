@@ -50,7 +50,7 @@ namespace WEBCORE_Clinica_Medica.Models.Dominio
 
         [StringLength(14, ErrorMessage = "Tamanho do campo 'CPF' excedeu o limite")]
         [Required(ErrorMessage = "Campo 'CPF' é obrigatório")]
-        [Remote("VerificarCPF", "Funcionarios", ErrorMessage = "CPF já cadastrado.")]
+        [Remote("VerificarCPF", "Funcionarios", AdditionalFields = nameof(id), ErrorMessage = "CPF já cadastrado.")]
         [Display(Name = "CPF")]
         public string cpf { get; set; }
 
